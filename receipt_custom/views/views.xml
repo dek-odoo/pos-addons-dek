@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <template id="assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/receipt_custom/static/src/js/receipt_cs.js"></script>
+          </xpath>
+         </template>
+
+        <record model="ir.ui.view" id="view_pos_config_form_perproductreceipt">
+            <field name="name">pos.config.form.view.perproductreceipt</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='features']" position="after">
+                  <group name="PerProductReceipt" String="Per Product Receipt">
+                      <field name="onereceipt_oneproduct"/>
+                      <field name="oneunit_onereceipt" attrs="{'invisible': [('onereceipt_oneproduct','=',False)]}"/>
+                      <field name="issue_barcode"/>
+                  </group>
+                </xpath>
+            </field>
+        </record>
+</odoo>
